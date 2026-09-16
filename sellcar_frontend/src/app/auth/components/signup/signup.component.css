@@ -1,0 +1,96 @@
+body {
+    font-family: 'Arial', sans-serif; /* Set a clean font for better readability */
+  }
+
+  .signup-container {
+    transition: transform 0.2s ease;
+  }
+
+  .signup-container:hover {
+    transform: translateY(-2px); /* Lift effect on hover */
+  }
+
+  h2 {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Soft shadow for title */
+  }
+
+  input {
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  input:focus {
+    border-color: #4b5563; /* Darker border on focus */
+    box-shadow: 0 0 5px rgba(75, 85, 99, 0.5); /* Subtle shadow on focus */
+  }
+
+  button {
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  button:hover {
+    background-color: #1f2937; /* Darken on hover */
+    transform: scale(1.05); /* Slightly enlarge button */
+  }
+
+  a:hover {
+    text-decoration: underline; /* Underline links on hover for better UX */
+    color: #4b5563; /* Change link color on hover */
+  }
+  
+  p {
+    transition: color 0.3s ease;
+  }
+
+  p:hover {
+    color: #4b5563; /* Change color on hover */
+  }
+
+  .signup-container {
+  width: 400px; /* Fixed width */
+  max-width: 90%; /* Maximum width to ensure responsiveness */
+  min-width: 300px; /* Minimum width to avoid excessive shrinking */
+  padding: 2rem; /* Consistent padding */
+  background-color: #ffffff; /* White background */
+  border-radius: 0.5rem; /* Rounded corners */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  transition: transform 0.2s ease, box-shadow 0.3s ease; /* Hover effects */
+  
+}
+
+.signup-container:hover {
+  transform: translateY(-2px); /* Slight lift on hover */
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+input {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+}
+
+input:focus {
+  border-color: #4b5563; /* Darker border color on focus */
+  box-shadow: 0 0 5px rgba(75, 85, 99, 0.5); /* Subtle glow effect */
+}
+
+button {
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover effects */
+}
+
+button:hover {
+  background-color: #1f2937; /* Darker background on hover */
+  transform: scale(1.05); /* Slight scale-up effect */
+}
+
+a:hover {
+  text-decoration: underline; /* Underline links on hover */
+  color: #4b5563; /* Change link color on hover */
+}
+
+@media (max-width: 480px) {
+  .signup-container {
+    padding: 1rem; /* Reduce padding for small screens */
+  }
+
+  button {
+    width: 100%; /* Full-width buttons for smaller screens */
+  }
+}

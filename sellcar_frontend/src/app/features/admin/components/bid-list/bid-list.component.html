@@ -1,0 +1,75 @@
+<div class="p-6 bg-gray-900 min-h-screen text-white">
+  <h1 class="text-3xl font-bold text-center text-yellow-400 mb-6">Bid List</h1>
+
+  <div *ngIf="isLoading" class="text-center text-lg">Loading bids...</div>
+
+  <div
+    *ngIf="!isLoading && bids.length === 0"
+    class="text-center text-gray-400"
+  >
+    No bids available.
+  </div>
+
+  <div *ngIf="!isLoading && bids.length > 0" class="overflow-x-auto">
+    <table class="w-full text-left border-collapse border border-gray-700">
+      <thead class="bg-gray-800 text-yellow-400">
+        <tr>
+          <th class="p-3 border border-gray-700">Car</th>
+          <th class="p-3 border border-gray-700">Username</th>
+          <th class="p-3 border border-gray-700">User Email</th>
+          <th class="p-3 border border-gray-700">Car Price</th>
+          <th class="p-3 border border-gray-700">Bid Price</th>
+          <th class="p-3 border border-gray-700">Bid Status</th>
+          <th class="p-3 border border-gray-700">Update Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let bid of bids" class="hover:bg-gray-800 transition">
+          <td class="p-3 border border-gray-700">{{ bid.carName || "N/A" }}</td>
+          <td class="p-3 border border-gray-700">
+            {{ bid.username || "N/A" }}
+          </td>
+          <td class="p-3 border border-gray-700">
+            {{ bid.userEmail || "N/A" }}
+          </td>
+          <td class="p-3 border border-gray-700 text-green-400 font-bold">
+            ${{ bid.carPrice || "N/A" }}
+          </td>
+          <td class="p-3 border border-gray-700 text-blue-400 font-bold">
+            ${{ bid.price }}
+          </td>
+          <td
+            class="p-3 border border-gray-700 font-bold"
+            [ngClass]="{
+              'text-green-500': bid.bidStatus === 'APPROVED',
+              'text-red-500': bid.bidStatus === 'REJECTED',
+              'text-yellow-400': bid.bidStatus === 'PENDING'
+            }"
+          >
+            {{ bid.bidStatus }}
+          </td>
+
+          <td class="p-3 border border-gray-700">
+            <!-- APPROVED Button -->
+            <button
+              class="px-4 py-1 text-white bg-green-500 rounded hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed"
+              (click)="updateBidStatus(bid.bidId, 'APPROVED')"
+              [disabled]="bid.bidStatus === 'APPROVED'"
+            >
+              APPROVE
+            </button>
+
+            <!-- REJECTED Button -->
+            <button
+              class="px-4 py-1 ml-2 text-white bg-red-500 rounded hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed"
+              (click)="updateBidStatus(bid.bidId, 'REJECTED')"
+              [disabled]="bid.bidStatus === 'REJECTED'"
+            >
+              REJECT
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,96 @@
+<div class="flex justify-center items-center mt-10 mb-10">
+  <div class="w-full max-w-2xl p-6 bg-white rounded-lg shadow-md">
+    <h2 class="text-center text-2xl font-semibold mb-4">Post Car</h2>
+    <form [formGroup]="postCarForm" (ngSubmit)="postCar()">
+      <div class="space-y-4">
+        
+        <!-- Brand -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Select a Brand</label>
+          <select formControlName="brand" class="block w-full mt-2 px-4 py-2 border rounded-md">
+            <option *ngFor="let brand of listOfBrands" [value]="brand">{{ brand }}</option>
+          </select>
+          <small class="text-red-500" *ngIf="postCarForm.get('brand')?.invalid && postCarForm.get('brand')?.touched">
+            Brand is required.
+          </small>
+        </div>
+
+        <!-- Car Name -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Car Name</label>
+          <input formControlName="name" type="text" class="block w-full mt-2 px-4 py-2 border rounded-md" placeholder="Car Name">
+          <small class="text-red-500" *ngIf="postCarForm.get('name')?.invalid && postCarForm.get('name')?.touched">
+            Car name is required and must contain only letters and numbers.
+          </small>
+        </div>
+
+        <!-- Type -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Select a Type</label>
+          <select formControlName="type" class="block w-full mt-2 px-4 py-2 border rounded-md">
+            <option *ngFor="let type of listOfType" [value]="type">{{ type }}</option>
+          </select>
+          <small class="text-red-500" *ngIf="postCarForm.get('type')?.invalid && postCarForm.get('type')?.touched">
+            Car type is required.
+          </small>
+        </div>
+
+        <!-- Transmission -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Select a Transmission</label>
+          <select formControlName="transmission" class="block w-full mt-2 px-4 py-2 border rounded-md">
+            <option *ngFor="let transmission of listOfTransmission" [value]="transmission">{{ transmission }}</option>
+          </select>
+          <small class="text-red-500" *ngIf="postCarForm.get('transmission')?.invalid && postCarForm.get('transmission')?.touched">
+            Transmission type is required.
+          </small>
+        </div>
+
+        <!-- Color -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Select a Color</label>
+          <select formControlName="color" class="block w-full mt-2 px-4 py-2 border rounded-md">
+            <option *ngFor="let color of listOfColor" [value]="color">{{ color }}</option>
+          </select>
+          <small class="text-red-500" *ngIf="postCarForm.get('color')?.invalid && postCarForm.get('color')?.touched">
+            Color is required.
+          </small>
+        </div>
+
+        <!-- Model Year -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Model Year</label>
+          <input formControlName="year" type="date" class="block w-full mt-2 px-4 py-2 border rounded-md" placeholder="Model Year">
+          <small class="text-red-500" *ngIf="postCarForm.get('year')?.invalid && postCarForm.get('year')?.touched">
+            Year must be between 1990 and 2025.
+          </small>
+        </div>
+
+        <!-- Price -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Price</label>
+          <input formControlName="price" type="number" class="block w-full mt-2 px-4 py-2 border rounded-md" placeholder="Price">
+          <small class="text-red-500" *ngIf="postCarForm.get('price')?.invalid && postCarForm.get('price')?.touched">
+            Price must be at least ₹1000.
+          </small>
+        </div>
+
+        <!-- Description -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Description</label>
+          <textarea formControlName="description" class="block w-full mt-2 px-4 py-2 border rounded-md" placeholder="Description" rows="3"></textarea>
+          <small class="text-red-500" *ngIf="postCarForm.get('description')?.invalid && postCarForm.get('description')?.touched">
+            Description must be between 10 and 500 characters.
+          </small>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="text-center">
+          <button type="submit" class="w-full py-2 px-4 bg-blue-500 text-white font-bold rounded-lg hover:bg-blue-600">
+            Post
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

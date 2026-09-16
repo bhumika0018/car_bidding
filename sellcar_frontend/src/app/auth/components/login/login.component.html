@@ -1,0 +1,102 @@
+
+  <body class="bg-gray-50 h-screen flex flex-col items-center">
+    <!-- Navbar -->
+    <nav
+      class="w-full bg-gray-100 py-4 px-6 fixed top-0 left-0 right-0 z-10 shadow-md"
+    >
+      <div class="container mx-auto flex justify-between items-center">
+        <!-- Logo and Heading (both clickable to navigate to dashboard) -->
+        <div class="flex items-center space-x-2">
+          <!-- Logo with routerLink -->
+          <a routerLink="/dashboard">
+            <img
+              src="assets/images/logo.jpg"
+              alt="Logo"
+              class="h-12 w-12 rounded-full cursor-pointer"
+            />
+          </a>
+          <!-- Ride Right with routerLink -->
+          <a
+            routerLink="/dashboard"
+            class="text-3xl font-bold text-gray-800 tracking-wide"
+            style="font-family: 'Orbitron', sans-serif"
+          >
+            Ride Right
+          </a>
+        </div>
+  
+        <!-- Buttons -->
+        <div class="space-x-4 hidden md:flex">
+          
+          <a
+          routerLink="/dashboard"
+            class="btn-home bg-gray-800 hover:bg-black text-white py-2 px-6 rounded-md transition duration-300 no-underline"
+          >
+            Home
+          </a>
+          <a
+            routerLink="/signup"
+            class="btn-signup bg-gray-800 hover:bg-black text-white py-2 px-6 rounded-md transition duration-300 no-underline"
+          >
+            Signup
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Login Form -->
+    <div
+      class="login-container mt-28 bg-white text-gray-800 rounded-lg shadow-lg p-6 md:p-10 w-11/12 md:w-1/3 max-w-md"
+    >
+      <h2 class="text-3xl font-semibold text-center mb-6">Welcome</h2>
+      <p class="text-center mb-6">Login to start exploring our collection!</p>
+  
+      <form (ngSubmit)="onLogin()">
+        <div class="mb-6">
+          <label for="email" class="block text-lg font-medium"
+            >Email Address</label
+          >
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+            [(ngModel)]="loginData.email"
+            class="w-full mt-2 p-4 border border-gray-300 rounded-lg focus:ring focus:ring-gray-800 focus:outline-none shadow-sm transition duration-300"
+            required
+          />
+        </div>
+        <div class="mb-6">
+          <label for="password" class="block text-lg font-medium">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter your password"
+            [(ngModel)]="loginData.password"
+            class="w-full mt-2 p-4 border border-gray-300 rounded-lg focus:ring focus:ring-gray-800 focus:outline-none shadow-sm transition duration-300"
+            required
+          />
+          <p class="mt-4 text-center text-sm text-gray-600">
+            <a href="#" class="text-gray-800 hover:underline"
+              >Forgot your password?</a
+            >
+          </p>
+        </div>
+  
+        <button
+          type="submit"
+          class="w-full bg-gray-800 text-white py-3 rounded-full font-semibold hover:bg-black transition duration-300"
+        >
+          Login
+        </button>
+      </form>
+  
+      <p class="mt-4 text-center text-sm text-gray-600">
+        Don't have an account?
+        <a routerLink="/signup" class="text-gray-800 hover:underline"
+          >Sign up here</a>
+      </p>
+    </div>
+  </body>
+  

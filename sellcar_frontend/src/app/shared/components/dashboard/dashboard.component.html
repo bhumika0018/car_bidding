@@ -1,0 +1,267 @@
+<body
+  class="bg-gray-50 h-screen"
+  style="
+    background: url('https://images.pexels.com/photos/358070/pexels-photo-358070.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')
+      no-repeat center center/cover;
+  "
+>
+  <!-- Navbar -->
+  <nav
+    class="w-full bg-gray-100 bg-opacity-80 py-4 px-6 fixed top-0 left-0 right-0 z-10 shadow-md"
+  >
+    <div class="container mx-auto flex justify-between items-center">
+      <!-- Logo and Heading -->
+      <div class="flex items-center space-x-2">
+        <!-- Logo with routerLink -->
+        <a routerLink="/dashboard">
+          <img
+            src="assets/images/logo.jpg"
+            alt="Logo"
+            class="h-12 w-12 rounded-full cursor-pointer"
+          />
+        </a>
+        <!-- Ride Right with routerLink -->
+        <a
+          routerLink="/dashboard"
+          class="text-3xl font-bold text-gray-800 tracking-wide"
+          style="font-family: 'Orbitron', sans-serif"
+        >
+          Ride Right
+        </a>
+      </div>
+
+      <!-- Buttons -->
+      <div class="space-x-4 hidden md:flex">
+        <a
+          routerLink="/login"
+          class="hover-effect bg-gray-800 hover:bg-black text-white py-2 px-6 rounded-md transition duration-300 no-underline"
+        >
+          Login
+        </a>
+        <a
+          routerLink="/signup"
+          class="hover-effect bg-gray-800 hover:bg-black text-white py-2 px-6 rounded-md transition duration-300 no-underline"
+        >
+          Signup
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Dashboard Content -->
+  <div
+    class="flex flex-col items-center justify-center h-full pt-16 text-white text-center bg-opacity-70"
+    style="backdrop-filter: blur(5px)"
+  >
+    <h1
+      class="text-5xl font-extrabold tracking-wide mb-1"
+      style="font-family: 'Bebas Neue', cursive"
+    >
+      Welcome to Ride Right
+    </h1>
+    <p class="text-white-700 mt-4 text-lg">
+      Search, book, and bid on cars with ease!
+    </p>
+    <br />
+    <!-- Search Bar -->
+    <div class="w-11/12 md:w-2/3 lg:w-1/2">
+      <div class="relative">
+        <input
+          type="text"
+          placeholder="Search for a car, brand, or model..."
+          class="w-full p-4 border border-gray-300 rounded-lg shadow-md focus:ring focus:ring-gray-800 focus:outline-none"
+        />
+        <button
+          class="hover-effect absolute right-2 top-2 bg-gray-800 text-white px-6 py-2 rounded-md hover:bg-black transition duration-300"
+        >
+          Search
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Features section -->
+    <section class="bg-gradient-to-b from-gray-100 py-16">
+    <div class="container mx-auto px-6 relative">
+      <h2
+        class="text-4xl font-extrabold text-center text-gray-900 mb-2 tracking-wide"
+        style="font-family: 'Bebas Neue', cursive"
+      >
+        Featured Cars
+      </h2>
+
+      <div >
+        <!-- Left Arrow -->
+        <button
+          (click)="scrollLeft()"
+          class="absolute left-1 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-3 rounded-md transition z-10"
+        >
+          &#10094;
+        </button>
+
+        <div class="overflow-hidden px-3 py-9 relative">
+          <div
+            #scrollContainer
+            class="flex space-x-6 transition-all duration-400"
+          >
+            <div
+              *ngFor="let car of cars"
+              class="bg-white rounded-2xl shadow-1xl p-6 flex flex-col min-w-[420px] max-w-[420px] h-[500px] transition-transform duration-300 hover:scale-105 hover:shadow-2xl transform hover:rotate-1"
+            >
+              <img
+                [src]="car.image"
+                [alt]="car.name"
+                class="w-full h-60 object-cover rounded-2xl  mb-5 shadow-md"
+              />
+              <h3
+                class="text-2xl font-bold text-gray-800 mb-4 text-center leading-tight break-words"
+              >
+                {{ car.name }}
+              </h3>
+              <p
+                class="text-gray-600 mb-6 text-lg text-center leading-relaxed break-words overflow-hidden overflow-ellipsis max-h-[90px]"
+              >
+                {{ car.description }}
+              </p>
+              <div class="mt-auto flex justify-center">
+                <button
+                  class="hover-effect bg-gray-800 hover:bg-black text-white py-2 px-6 rounded-md transition duration-300 no-underline"
+                >
+                  Learn More
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Right Arrow -->
+        <button
+          (click)="scrollRight()"
+          class="absolute right-1 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-3 rounded-md transition z-10"
+        >
+          &#10095;
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="bg-gray-100">
+    <div class="container mx-auto px-4">
+      <h2
+        class="text-4xl font-bold text-center text-gray-800 mb-8"
+        style="font-family: 'Bebas Neue', cursive"
+      >
+        Our Services
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Service 1 -->
+        <div class="text-center">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/2965/2965571.png"
+            alt="Service 1"
+            class="mx-auto mb-4 h-16"
+          />
+          <h3 class="text-xl font-semibold text-gray-800 mb-2">
+            Car Financing
+          </h3>
+          <p class="text-gray-600">
+            We offer flexible financing options to help you get your dream car.
+          </p>
+        </div>
+        <!-- Service 2 -->
+        <div class="text-center">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/270/270674.png"
+            alt="Service 2"
+            class="mx-auto mb-4 h-16"
+          />
+          <h3 class="text-xl font-semibold text-gray-800 mb-2">24/7 Support</h3>
+          <p class="text-gray-600">
+            Our team is here to assist you anytime, anywhere.
+          </p>
+        </div>
+        <!-- Service 3 -->
+        <div class="text-center">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/2874/2874131.png"
+            alt="Service 3"
+            class="mx-auto mb-4 h-16"
+          />
+          <h3 class="text-xl font-semibold text-gray-800 mb-2">Trade-In</h3>
+          <p class="text-gray-600">
+            Exchange your old car for a brand-new one effortlessly.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+  <br>
+
+  <!-- Testimonials Section -->
+  <section class="bg-gray-800 text-white py-12">
+    <div class="container mx-auto px-4">
+      <h2
+        class="text-4xl font-bold text-center mb-8"
+        style="font-family: 'Bebas Neue', cursive"
+      >
+        What Our Customers Say
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Testimonial 1 -->
+        <div class="text-center">
+          <p class="italic">
+            "Ride Right made my car-buying process so easy! I found my perfect
+            car within minutes."
+          </p>
+          <h4 class="mt-4 font-bold">- John Doe</h4>
+        </div>
+        <!-- Testimonial 2 -->
+        <div class="text-center">
+          <p class="italic">
+            "I appreciate the transparent pricing and excellent customer
+            service. Highly recommend!"
+          </p>
+          <h4 class="mt-4 font-bold">- Jane Smith</h4>
+        </div>
+        <!-- Testimonial 3 -->
+        <div class="text-center">
+          <p class="italic">
+            "Fantastic experience! Ride Right offers an incredible selection of
+            cars."
+          </p>
+          <h4 class="mt-4 font-bold">- Michael Brown</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Us Section (Footer) -->
+  <footer id="about-section" class="bg-gray-800 text-white py-6 mt-auto">
+    <div class="container mx-auto text-center">
+      <h2
+        class="text-3xl font-bold mb-4"
+        style="font-family: 'Bebas Neue', cursive"
+      >
+        About Us
+      </h2>
+      <p class="mb-4">
+        At Ride Right, we believe that finding the perfect car should be an
+        enjoyable journey. Our mission is to provide a seamless platform where
+        car enthusiasts and buyers can connect, explore, and discover their
+        ideal vehicles.
+      </p>
+      <p class="mb-4">
+        With a user-friendly interface and powerful search tools, we empower our
+        users to make informed decisions. Whether you're looking for a sleek
+        sedan or a rugged SUV, Ride Right offers a diverse selection of vehicles
+        tailored to your needs.
+      </p>
+      <p class="mb-4">
+        Our dedicated team is passionate about cars and committed to delivering
+        exceptional service. We strive to create a community where everyone can
+        share their love for automobiles and find their perfect match.
+      </p>
+    </div>
+  </footer>
+</body>

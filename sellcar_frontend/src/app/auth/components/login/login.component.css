@@ -1,0 +1,125 @@
+body {
+    font-family: 'Arial', sans-serif;
+  }
+  
+  nav {
+    transition: background-color 0.3s ease;
+  }
+  
+  nav:hover {
+    background-color: #e5e7eb;
+  }
+  
+  
+  .btn-translate {
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  button:hover {
+    background-color: #1f2937;
+    transform: scale(1.05);
+  }
+  
+  .btn-translate:hover {
+    background-color: #d1d5db;
+    transform: scale(1.05);
+  }
+  
+  .btn-signup {
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .btn-signup:hover {
+    background-color: #1f2937;
+    transform: scale(1.05);
+  }
+
+  .btn-home {
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .btn-home:hover {
+    background-color: #1f2937;
+    transform: scale(1.05);
+  }
+  
+  input {
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  input:focus {
+    border-color: #4b5563;
+    box-shadow: 0 0 5px rgba(75, 85, 99, 0.5);
+  }
+  
+  .form-title {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  a:hover {
+    color: #4b5563;
+  }
+  
+  .login-container {
+    transition: transform 0.2s ease;
+  }
+  
+  .login-container:hover {
+    transform: translateY(-2px);
+  }
+  
+  .login-container {
+    width: 400px; /* Fixed width */
+    max-width: 90%; /* Maximum width is 90% of the viewport for smaller screens */
+    min-width: 300px; /* Ensure it doesn’t shrink below 300px */
+    padding: 2rem; /* Consistent padding */
+    transition: transform 0.2s ease;
+  }
+  
+  @media (max-width: 480px) {
+    .login-container {
+      padding: 1rem; /* Reduce padding for very small screens */
+    }
+  
+    .btn-translate,
+    .btn-signup {
+      width: 100%; /* Make buttons full width */
+      text-align: center;
+      padding: 0.5rem; /* Adjust padding for buttons */
+    }
+  }
+  
+  
+  
+  
+  /* Media Queries for Responsiveness */
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column; /* Stack logo and buttons */
+      text-align: center;
+    }
+  
+    .hidden.md\\:flex {
+      display: flex !important; /* Show buttons on smaller screens */
+      justify-content: center;
+    }
+  
+   
+  
+    nav h1 {
+      font-size: 1.5rem; /* Adjust font size for smaller screens */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .login-container {
+      padding: 1rem; /* Reduce padding on smaller screens */
+    }
+  
+    .btn-translate,
+    .btn-signup {
+      width: 100%; /* Make buttons full width */
+      text-align: center;
+      padding: 0.5rem; /* Adjust padding for buttons */
+    }
+  }

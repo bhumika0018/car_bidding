@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Add Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100">
+    <!-- Navbar -->
+    <nav class="w-full bg-white py-4 px-6 fixed top-0 left-0 right-0 z-10 shadow-lg">
+      <div class="container mx-auto flex justify-between items-center">
+        <div class="flex items-center space-x-3">
+          <a routerLink="/dashboard">
+            <img src="assets/images/logo.jpg" alt="Logo" class="h-14 w-14 rounded-full shadow-md" />
+          </a>
+          <a routerLink="/dashboard" class="text-3xl font-bold text-gray-800 tracking-wide" style="font-family: 'Orbitron', sans-serif">Ride Right</a>
+        </div>
+        <div class="text-center flex-grow">
+          <h1 class="text-5xl font-bold text-gray-900" style="font-family: 'Bebas Neue', cursive">Admin Dashboard</h1>
+        </div>
+        <div class="space-x-4 hidden md:flex">
+          <div class="relative dropdown">
+            <button class="bg-gray-800 hover:bg-black text-white py-2 px-6 rounded-md transition duration-300 flex items-center">
+              Features
+              <svg class="w-4 h-4 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div class="absolute right-0 mt-2 w-48 bg-white border rounded-lg shadow-lg dropdown-menu">
+              <a routerLink="/post-car" class="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition duration-300">Add New Car</a>
+              <a routerLink="/user-list" class="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition duration-300">View All Users</a>
+              <a routerLink="/bid-list" class="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition duration-300">View Bids</a>
+              <a routerLink="/transactions" class="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition duration-300">Transactions</a>
+            </div>
+          </div>
+          <button (click)="logout()" class="bg-red-600 hover:bg-red-700 text-white py-2 px-6 rounded-lg shadow-md transition duration-300">Logout</button>
+        </div>
+      </div>
+    </nav>
+    <br />
+    <section id="admin-dashboard" class="bg-gray-100 text-gray-800 py-24">
+      <div class="container mx-auto px-6">
+        <!-- Search Cars -->
+        <div class="bg-white p-6 rounded-lg shadow-xl mb-6">
+          <h2 class="text-2xl font-bold mb-4 text-gray-900">Search Cars</h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <select [(ngModel)]="searchCriteria.brand" class="p-3 border rounded-lg w-full">
+              <option value="null" selected>Select Brand</option>
+              <option *ngFor="let brand of brands" [value]="brand">{{ brand }}</option>
+            </select>
+            <input type="text" [(ngModel)]="searchCriteria.name" placeholder="Enter Name" class="p-3 border rounded-lg w-full" />
+            <input type="number" [(ngModel)]="searchCriteria.price" placeholder="Enter Price" class="p-3 border rounded-lg w-full" />
+            <select [(ngModel)]="searchCriteria.transmission" class="p-3 border rounded-lg w-full">
+              <option value="null" selected>Select Transmission</option>
+              <option *ngFor="let trans of transmissions" [value]="trans">{{ trans }}</option>
+            </select>
+            <select [(ngModel)]="searchCriteria.type" class="p-3 border rounded-lg w-full">
+              <option value="null" selected>Select Type</option>
+              <option *ngFor="let type of types" [value]="type">{{ type }}</option>
+            </select>
+            <select [(ngModel)]="searchCriteria.color" class="p-3 border rounded-lg w-full">
+              <option value="null" selected>Select Color</option>
+              <option *ngFor="let color of colors" [value]="color">{{ color }}</option>
+            </select>
+          </div>
+          <button (click)="searchCars()" class="mt-4 bg-gray-800 text-white px-6 py-2 rounded-md hover:bg-black transition duration-300 w-full">Search</button>
+        </div>
+      </div>
+      <div *ngIf="isSearchedCars" class="container mx-auto px-6">
+        <h2 class="text-2xl font-bold mb-4">Search Results:</h2>
+        <p *ngIf="cars.length == 0" class="text-center text-gray-600 text-lg">No cars available. Please check again later.</p>
+        <div *ngIf="cars.length > 0" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div *ngFor="let car of cars" class="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col h-full">
+            <div class="p-4 flex flex-col flex-grow">
+              <h2 class="text-xl font-semibold text-gray-900">{{ car.name }}</h2>
+              <p class="text-gray-600">{{ car.brand }} - {{ car.type }}</p>
+              <p class="text-gray-600">Color: {{ car.color }}</p>
+              <p class="text-gray-600">Transmission: {{ car.transmission }}</p>
+              <p class="text-gray-900 font-bold text-lg">₹{{ car.price }}</p>
+              <div class="mt-auto">
+                <button  class="mt-4 w-full bg-gray-800 text-white py-2 px-4 rounded-md hover:bg-black transition duration-300">View Details</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="!isSearchedCars" class="mr-2 ml-2">
+        <app-car-list></app-car-list>
+      </div>
+    </section>
+  </body>
+</html>

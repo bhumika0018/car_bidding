@@ -1,0 +1,103 @@
+<div class="container mx-auto px-4 py-8">
+  <h2
+    class="text-4xl font-bold text-gray-800 mb-6 text-center"
+    style="font-family: 'Bebas Neue', cursive"
+  >
+    My Bookings
+  </h2>
+
+  <!-- Show if no bids available -->
+  <p *ngIf="bids.length === 0" class="text-center text-gray-600 text-lg">
+    No bids placed yet.
+  </p> 
+
+  <!-- Grid of Bid Cards -->
+  <div
+    *ngIf="bids.length > 0"
+    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+  >
+    <div
+      *ngFor="let bid of bids"
+      class="bg-white shadow-md rounded-lg overflow-hidden flex flex-col h-full p-4 border border-gray-200"
+    >
+      <!-- Car Name -->
+      <h2 class="text-lg font-semibold text-gray-900 mb-2">
+        {{ getCarName(bid.carId) }}
+      </h2>
+
+      <!-- Bid Price -->
+      <p class="text-gray-700 text-sm font-medium">
+        ₹{{ bid.price ?? "Not Provided" }}
+      </p>
+
+      <!-- Bid Status -->
+      <p class="text-sm font-medium mt-2">
+        Status:
+        <span
+          [class.text-yellow-500]="bid.bidStatus === 'PENDING'"
+          [class.text-green-600]="bid.bidStatus === 'APPROVED'"
+          [class.text-red-600]="bid.bidStatus === 'REJECTED'"
+        >
+          {{ bid.bidStatus }}
+        </span>
+      </p>
+
+      <!-- Action Buttons -->
+      <div class="mt-auto">
+        <button
+          (click)="getCarDetails(bid.carId)"
+          class="mt-4 w-full bg-gray-800 text-white py-2 px-4 rounded-md hover:bg-black transition duration-300"
+        >
+          View Details
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Car Details Modal -->
+<div
+  *ngIf="selectedCar"
+  class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
+>
+  <div class="bg-white rounded-lg shadow-lg w-96 p-6 border border-gray-200">
+    <h2 class="text-xl font-semibold mb-4 text-gray-900">Car Details</h2>
+
+    <p class="text-gray-700 text-sm">
+      <strong>Name:</strong> {{ selectedCar.name }}
+    </p>
+    <p class="text-gray-700 text-sm">
+      <strong>Brand:</strong> {{ selectedCar.brand }}
+    </p>
+    <p class="text-gray-700 text-sm">
+      <strong>Type:</strong> {{ selectedCar.type }}
+    </p>
+    <p class="text-gray-700 text-sm">
+      <strong>Price:</strong> ₹{{ selectedCar.price }}
+    </p>
+    <p class="text-gray-700 text-sm">
+      <strong>Sold:</strong> {{ selectedCar.sold }}
+    </p>
+    <p class="text-gray-700 text-sm">
+      <strong>Year:</strong> {{ selectedCar.year }}
+    </p>
+    <p class="text-gray-700 text-sm">
+      <strong>Description:</strong> {{ selectedCar.description }}
+    </p>
+
+    <div class="mt-4 flex justify-end">
+      <button
+        (click)="deleteBid(selectedCar.carId)"
+        class="bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-800 transition duration-300 mr-2"
+      >
+        Cancel Bid
+      </button>
+      <button
+        (click)="selectedCar = null"
+        class="bg-gray-500 text-white py-2 px-4 rounded-md hover:bg-gray-700 transition duration-300"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+</div>
